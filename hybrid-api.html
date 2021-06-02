@@ -46,7 +46,7 @@
 <script>
   eruda.init();
 
-  YBB.hybrid.debug = true; // 打开调试模式
+
 
   function reflesh() {
     location.reload();
@@ -62,14 +62,8 @@
     var params ='{"amount":5000,"amountRefunded":0,"app":"app_1234","body":"权益商城-测试商品","channel":"wx","clientIp":"192.168.0.164","created":"2021-06-02T11:08:49.000+0800","credential":{"wx":{"appid":"wxa9d3a91e3ae32e23","noncestr":"4dCzKYnZOvZQODZtBsy8lG69O07RIDir","package":"Sign=WXPay","partnerid":"1487037042","prepayid":"wx021108499795194c318baea981aec60000","sign":"93A74E078A9A7B2955DFF80CB689018C","timestamp":"1622603330","universalLink":"https://ul.cloudbae.cn/ann/"}},"currency":"cny","extra":{"couponsStatus":"n"},"id":"ch_u0jdel766sa7mhhkr530ch","livemode":false,"object":"charge","orderNo":"RI_mall_bsqj4fhboc27dghiv","paid":false,"refunded":false,"subject":"权益商城-测试商品","timeExpire":"2021-06-02T11:13:48.000+0800"}'
     //var params = '{key: value}';
     var type = 'Pay'; // type 是可选参数，根据不同应用，传递 'Pay' 或者 'InputPassword'
-    hybridBridge.util.pay(JSON.stringify(params)).then(function(response) {
+    cloudbae.hybridBridge.util.pay(params).then(function(response) {
       response = {
-           stateCode?: number; // 1. 支付成功 2.支付失败 3.用户主动取消支付 4.版本不支持或 type 不支持
-           errCode?: any; // 支付出错时，支付平台返回的errorCode，具体值参考：
-           // 支付宝：https://docs.open.alipay.com/204/105301/
-           // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
-           resultDes?: string; // 结果描述，具体描述为各个支付平台对应的错误描述
-           payPassword?: string; // 加密后的支付密码
       }
       console.log(response);
     });
