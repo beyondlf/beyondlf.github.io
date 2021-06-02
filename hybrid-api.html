@@ -32,6 +32,7 @@
     <li onclick="reflesh()">刷新页面</li>
 
     <li onclick="getLocation()">定位</li>
+    <li onclick="weChatPay()">微信支付</li>
   </ul>
 </body>
 
@@ -55,5 +56,21 @@
 
   // 获取定位方法
   function getLocation() {
+  }
+
+  function weChatPay(){
+    var params = '{key: value}'; // 由后台提供的字符串
+    var type = 'Pay'; // type 是可选参数，根据不同应用，传递 'Pay' 或者 'InputPassword'
+    hybridBridge.util.pay(params, type).then(function(response) {
+      response = {
+           stateCode?: number; // 1. 支付成功 2.支付失败 3.用户主动取消支付 4.版本不支持或 type 不支持
+           errCode?: any; // 支付出错时，支付平台返回的errorCode，具体值参考：
+           // 支付宝：https://docs.open.alipay.com/204/105301/
+           // 微信：https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_5
+           resultDes?: string; // 结果描述，具体描述为各个支付平台对应的错误描述
+           payPassword?: string; // 加密后的支付密码
+       }
+       console.log(response);
+    });
   }
 </script>
