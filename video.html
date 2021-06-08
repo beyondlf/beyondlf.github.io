@@ -32,12 +32,8 @@
     <li onclick="makeVideo()">录制视屏页面</li>
   </ul>
 <p>这是视屏录制页面</p>
-  <input type="file" id="btn_file3" name="consignerRdFile" accept="image/jpg,image/jpeg,image/gif,image/png,file"
-                            style="display:none"
-                            οnchange="imgChange(event,'consignerRdSign')">
-  <img id="consignerRdSign" src="/static/images/upload_img.png" width="100px" height="100px"
-                        οnclick="F_Open_dialog('btn_file3')">
-
+  <input type="file" class="file" multiple>
+  <img src="" alt="" id="img">
 
 </body>
 
@@ -51,25 +47,20 @@
 
 <script>
   eruda.init();
-
-  function F_Open_dialog(id) {
-            document.getElementById(id).click();
-  }
-
-
-  //处理event事件，给image赋值base64的src
- function imgChange(e, imageid) {
-            console.info(e.target.files[0]);//图片文件
-            console.log(e.target.value);//这个也是文件的路径和上面的dom.value是一样的
-            var reader = new FileReader();
-            reader.onload = (function (file) {
-                return function (e) {
-                    console.info(this.result); //这个就是base64的数据了
-                    document.getElementById(imageid).src = this.result;
-                };
-            })(e.target.files[0]);
-            reader.readAsDataURL(e.target.files[0]);
-  }
+    //获取文件表单元素
+    var file=document.querySelector(".file");
+    //选择文件后触发
+    file.onchange=function(){
+        //初始化一个文件读取对象
+        var reader=new FileReader();
+        //读取文件数据
+        reader.readAsDataURL(this.files[0]);
+        //读取完毕,相当于加载的过程
+        reader.onload=function(){
+            //this.result就是使用base64表示的图片信息
+            document.querySelector("#img").src=this.result;
+        }
+    }
 </script>
 
 
