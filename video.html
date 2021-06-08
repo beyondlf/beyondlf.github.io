@@ -44,20 +44,7 @@
 
 <script>
   eruda.init();
-    //获取文件表单元素
-    var file=document.querySelector(".file");
-    //选择文件后触发
-    file.onchange=function(){
-        //初始化一个文件读取对象
-        var reader=new FileReader();
-        //读取文件数据
-        reader.readAsDataURL(this.files[0]);
-        //读取完毕,相当于加载的过程
-        reader.onload=function(){
-            //this.result就是使用base64表示的图片信息
-            document.querySelector("#img").src=this.result;
-        }
-    }
+
 </script>
 
 
