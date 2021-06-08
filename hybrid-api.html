@@ -32,6 +32,7 @@
     <li onclick="reflesh()">刷新页面</li>
     <li onclick="getLocation()">定位</li>
     <li onclick="weChatPay()">微信支付</li>
+    <li onclick="makeVideo()">录制视屏</li>
   </ul>
 </body>
 
@@ -68,4 +69,27 @@
       console.log(response);
     });
   }
+
+  function makeVideo(){
+    alert('makeVideo()');
+    // 跳转到本地一个含有video的链接就行
+    window.location.replace("/video.html");
+
+  }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
