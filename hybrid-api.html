@@ -33,6 +33,7 @@
     <li onclick="getLocation()">定位</li>
     <li onclick="weChatPay()">微信支付</li>
     <li onclick="makeVideo()">录制视屏</li>
+    <li onclick="authorise()">开放平台授权</li>
   </ul>
 </body>
 
@@ -74,7 +75,14 @@
     alert('makeVideo()');
     // 跳转到本地一个含有video的链接就行
     window.location.replace("/video.html");
+  }
 
+  function authorise(){
+    //user.authorization
+    var clientID = 'man4ay7wKdFKgN65HBvN';
+    hybridBridge.user.authorization(clientID).then(function(result) {
+      alert(result);
+    })
   }
 </script>
 
